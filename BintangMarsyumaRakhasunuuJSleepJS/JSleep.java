@@ -47,7 +47,7 @@ public class JSleep{
     public static int getAdminFee(int price){
         return (int)(price * getAdminFeePercentage());
     }
-    public static int getTotal(int price, int numberOfNight){
+    public static int getTotalPrice(int price, int numberOfNight){
         int totalPrice = price * numberOfNight;
         return (totalPrice + getAdminFee(totalPrice));
     }
