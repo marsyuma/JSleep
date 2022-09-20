@@ -26,7 +26,7 @@ public class JSleep{
         Room room = new Room("HotelKece", 50, price, Facility.AC);
         return room;
     }
-    public static int getHotelId(){
+    /*public static int getHotelId(){
         return 0;
     }
     public static String getHotelName(){
@@ -59,6 +59,6 @@ public class JSleep{
     public static int getTotalPrice(int price, int numberOfNight){
         int totalPrice = price * numberOfNight;
         return (totalPrice + getAdminFee(totalPrice));
-    }
+    }*/
     
 }
