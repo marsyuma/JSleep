@@ -28,7 +28,7 @@ public class Price {
         this.discount = 0;
     }
     private double getDiscountedPrice(){
-        if((double)discount > 100.0){
+        if(discount > 100.0){
             discount = (int) 100.0;
             return 0;
         }
