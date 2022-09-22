@@ -9,12 +9,12 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  */
 public enum Facility
 {
-    Wifi,
+    WiFi,
     Bathtub,
     Balcony,
     AC,
     FitnessCenter,
-    Refrigrator,
+    Refrigerator,
     Restaurant,
     SwimmingPool
 }

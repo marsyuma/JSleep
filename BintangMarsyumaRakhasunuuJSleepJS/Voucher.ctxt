@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Voucher
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Voucher\ here.\r\n\r\n\ @author\ Bintang\ Marsyuma\ Rakhasunu\r\n\ @version\ Post-Test\ CS\ 2\r\n
+comment1.params=name\ code\ type\ minimum\ cut
+comment1.target=Voucher(java.lang.String,\ int,\ Type,\ double,\ double)
+comment2.params=
+comment2.target=boolean\ isUsed()
+comment3.params=price
+comment3.target=boolean\ canApply(Price)
+comment4.params=price
+comment4.target=double\ apply(Price)
+numComments=5
