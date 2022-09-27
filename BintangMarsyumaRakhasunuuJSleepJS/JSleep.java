@@ -15,15 +15,31 @@ package BintangMarsyumaRakhasunuuJSleepJS;
 public class JSleep{
 
     public static void main(String[] args){
+       Payment testRoom = new Payment(1, 1, 1, "", 1, "", "");
+        Invoice testInvoice = new Invoice(2, 2, 2, "");
+        System.out.println(testRoom.print());
+        System.out.println(testInvoice.print());
+
+        Payment testRoom1 = new Payment(2021, 210673, 1848, "18.00", 314, "Saturday", "Monday");
+        Invoice testInvoice1 = new Invoice(2021, 210673, 1848, "18.00");
+        System.out.println(testRoom1.print());
+        System.out.println(testInvoice1.print());
+
+        /*System.out.println("getDiscPercent = " + getDiscountPercentage(1000, 800));
+        System.out.println("getDiscPrice = " + getDiscountedPrice(100000, 20.0f));
+        System.out.println("getOriginalPrice = " + getOriginalPrice(80000, 20.0f));
+        System.out.println("getAdminFee = " + getAdminFee(100000));
+        System.out.println("getTotalPrice = " + getTotalPrice(10000, 2));
+
         Room test = createRoom();
         System.out.println(test.name);
         System.out.println(test.size);
         System.out.println(test.price.price);
-        System.out.println(test.facility);
+        System.out.println(test.facility);*/
     }
     public static Room createRoom(){
         Price price = new Price(100000, 5);
-        Room room = new Room("HotelKece", 50, price, Facility.AC);
+        Room room = new Room(231, "HotelKece", 50, price, Facility.AC);
         return room;
     }
     /*public static int getHotelId(){
