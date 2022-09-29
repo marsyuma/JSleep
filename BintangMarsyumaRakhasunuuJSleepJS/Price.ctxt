@@ -5,4 +5,9 @@ comment1.params=price
 comment1.target=Price(double)
 comment2.params=price\ discount
 comment2.target=Price(double,\ double)
-numComments=3
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=
+comment4.target=double\ getDiscountedPrice()
+comment4.text=public\ Price(double\ price,\ double\ rebate){\r\n\ \ \ \ \ \ \ \ this.price\ \=\ price;\r\n\ \ \ \ \ \ \ \ this.rebate\ \=\ rebate;\r\n\ \ \ \ \ \ \ \ this.discount\ \=\ 0;\r\n}
+numComments=5

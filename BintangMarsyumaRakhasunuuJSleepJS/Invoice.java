@@ -5,23 +5,40 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * Write a description of class Invoice here.
  *
  * @author (your name)
- * @version (a version number or a date)
- */
+ * @version Tutam CS3*/
 public class Invoice extends Serializable{
+    public enum RoomRating{
+        NONE,
+        BAD,
+        NEUTRAL,
+        GOOD
+    }
+
+    public enum PaymentStatus{
+        FAILED,
+        WAITING,
+        SUCCESS
+    }
     public int buyerId;
     public int renterId;
     public String time;
+    public RoomRating rating;
+    public PaymentStatus status;
     protected Invoice(int id, int buyerId, int renterId, String time){
         super(id);
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.time = time;
+        this.rating = RoomRating.NONE;
+        this.status = PaymentStatus.WAITING;
     }
     public Invoice(int id, Account buyer, Renter renter, String time){
         super(id);
         this.buyerId = buyer.id;
         this.renterId = renter.id;
         this.time = time;
+        this.rating = RoomRating.NONE;
+        this.status = PaymentStatus.WAITING;
     }
     public String print(){
         return ("buyerId: " + this.buyerId + " renterId: " + this.renterId + " time: " +this.time);

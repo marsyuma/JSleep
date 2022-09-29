@@ -7,6 +7,13 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * @author Bintang Marsyuma Rakhasunu
  * @version CS 2
  */
+
+/**
+ * Write a description of class Price here.
+ *
+ * @author Bintang Marsyuma Rakhasunu
+ * @version CS 2
+ */
 public class Price {
     /*public double rebate;*/
     public double price ;
@@ -22,22 +29,25 @@ public class Price {
         this.discount = discount;
         /*this.rebate = 0;*/
     }
+    public String toString(){
+        return ("Harga : " + this.price + "\nDiskon : " + this.discount + " Persen");
+    }
     /*public Price(double price, double rebate){
         this.price = price;
         this.rebate = rebate;
         this.discount = 0;
     }*/
-    /*private double getDiscountedPrice(){
+    private double getDiscountedPrice(){
         if(discount > 100.0){
             discount = (int) 100.0;
             return 0;
         }
         return price - (price * discount / 100);
-    }*/
+    }
     /*private double getRebatedPrice(){
         if (rebate > price){
             rebate = price;
         }
-        return price - (price - rebate);
+        return price - rebate);
     }*/
 }

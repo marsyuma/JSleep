@@ -15,15 +15,21 @@ package BintangMarsyumaRakhasunuuJSleepJS;
 public class JSleep{
 
     public static void main(String[] args){
-       Payment testRoom = new Payment(1, 1, 1, "", 1, "", "");
-        Invoice testInvoice = new Invoice(2, 2, 2, "");
-        System.out.println(testRoom.print());
-        System.out.println(testInvoice.print());
+       Complaint testComplain = new Complaint(1, "23 August 2022", "Bad Quality");
 
-        Payment testRoom1 = new Payment(2021, 210673, 1848, "18.00", 314, "Saturday", "Monday");
-        Invoice testInvoice1 = new Invoice(2021, 210673, 1848, "18.00");
-        System.out.println(testRoom1.print());
-        System.out.println(testInvoice1.print());
+        Price testPrice = new Price(100000, 20000);
+
+        Room testRoom = new Room(1, "Presidential Suite", 5, testPrice, Facility.FitnessCenter, City.DEPOK, "JL. Margonda Raya");
+
+        Account testAccount = new Account(1, "Bob", "bob@gmail.com", "bob");
+
+        Rating testRating = new Rating();
+
+        System.out.println(testComplain.toString());
+        System.out.println(testRoom.toString());
+        System.out.println(testAccount.toString());
+        System.out.println(testPrice.toString());
+        System.out.println(testRating.toString());
 
         /*System.out.println("getDiscPercent = " + getDiscountPercentage(1000, 800));
         System.out.println("getDiscPrice = " + getDiscountedPrice(100000, 20.0f));
@@ -37,11 +43,11 @@ public class JSleep{
         System.out.println(test.price.price);
         System.out.println(test.facility);*/
     }
-    public static Room createRoom(){
+    /*public static Room createRoom(){
         Price price = new Price(100000, 5);
-        Room room = new Room(231, "HotelKece", 50, price, Facility.AC);
+        Room room = new Room(231, "HotelKece", 50, price, Facility.AC, City.BEKASI, bedType.SINGLE, "Jalan Gatot Subroto");
         return room;
-    }
+    }*/
     /*public static int getHotelId(){
         return 0;
     }
