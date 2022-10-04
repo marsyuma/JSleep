@@ -7,22 +7,36 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * @author (your name)
  * @version (a version number or a date)
  */
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Payment extends Invoice{
-    public String to;
-    public String from;
+    SimpleDateFormat SDFormat = new SimpleDateFormat("dd MMMM yyyy");
+    public Calendar to;
+    public Calendar from;
     private int roomId;
 
-    public Payment(int id, int buyerId, int renterId, String time, int roomId, String from, String to){
-        super(id, buyerId, renterId, time);
+    public Payment(int id, int buyerId, int renterId, int roomId){
+        super(id, buyerId, renterId);
         this.roomId = roomId;
-        this.from = from;
-        this.to = to;
+        this.from = Calendar.getInstance();
+        this.to = Calendar.getInstance();
+        this.to.add(Calendar.DATE, 2);
+
     }
-    public Payment(int id, Account buyer, Renter renter, String time, int roomId, String from, String to){
-        super(id, buyer.id, renter.id, time);
+    public Payment(int id, Account buyer, Renter renter, int roomId){
+        super(id, buyer, renter);
         this.roomId = roomId;
-        this.from = from;
-        this.to = to;
+        this.from = Calendar.getInstance();
+        this.to = Calendar.getInstance();
+        this.to.add(Calendar.DATE, 2);
+    }
+    public String getTime(){
+        return SDFormat.format(this.time.getTime());
+    }
+    public String getDuration(){
+        return SDFormat.format(this.from.getTime()) + " - " + SDFormat.format(this.to.getTime());
     }
     public String print(){
         return ("to: " + this.to + " from: " + this.from + " roomId: " +this.roomId);
@@ -30,5 +44,6 @@ public class Payment extends Invoice{
     public int getRoomId(){
         return roomId;
     }
-    
+
 }
+

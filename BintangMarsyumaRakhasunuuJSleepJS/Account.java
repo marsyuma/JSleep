@@ -4,15 +4,9 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * Write a description of enum Type here.
  *
  * @author Bintang Marsyuma Rakhasunu
- * @version Post-Test CS 2
+ * @version Post-Test CS 4
  */
-/**
- * Write a description of enum Type here.
- *
- * @author Bintang Marsyuma Rakhasunu
- * @version Post-Test CS 2
- */
-public class Account extends Serializable
+public class Account extends Serializable implements FileParser
 {
     public String name;
     public String email;
@@ -25,7 +19,14 @@ public class Account extends Serializable
         this.password = password;
     }
     public String toString(){
-        return "Nama : " + this.name + "\nEmail : " + this.email + 
+        return "Nama : " + this.name + "\nEmail : " + this.email +
                 "\nPassword : " + this.password + "\n";
+    }
+    public Object write() {
+        return null;
+    }
+
+    public boolean read(String string) {
+        return false;
     }
 }

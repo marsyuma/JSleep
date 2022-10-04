@@ -5,15 +5,9 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * Write a description of class Voucher here.
  *
  * @author Bintang Marsyuma Rakhasunu
- * @version Post-Test CS 2
+ * @version Post-Test CS 4
  */
-/**
- * Write a description of class Voucher here.
- *
- * @author Bintang Marsyuma Rakhasunu
- * @version Post-Test CS 2
- */
-public class Voucher extends Serializable /*class yang diinheritence dari Serializable*/
+public class Voucher extends Serializable implements FileParser
 {
     public Type type;
     public double cut;
@@ -22,7 +16,7 @@ public class Voucher extends Serializable /*class yang diinheritence dari Serial
     public double minimum;
     private boolean used;
 
-    public Voucher(int id, String name, int code, Type type,boolean used, double minimum, double cut){
+    public Voucher(int id, String name, int code, Type type, boolean used, double minimum, double cut){
         super(id);
         this.name = name;
         this.code = code;
@@ -31,6 +25,7 @@ public class Voucher extends Serializable /*class yang diinheritence dari Serial
         this.minimum = minimum;
         this.cut = cut;
     }
+
 
     public boolean isUsed() {
         return used;
@@ -58,5 +53,13 @@ public class Voucher extends Serializable /*class yang diinheritence dari Serial
             }
             return price.price - this.cut;
         }
+    }
+
+    public Object write() {
+        return null;
+    }
+
+    public boolean read(String string) {
+        return false;
     }
 }

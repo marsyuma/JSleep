@@ -7,30 +7,14 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * @author Bintang Marsyuma Rakhasunu
  * @version CS 2
  */
-/**
- * Write a description of class Price here.
- *
- * @author Bintang Marsyuma Rakhasunu
- * @version CS 2
- */
-/**
- * Write a description of class Price here.
- *
- * @author Bintang Marsyuma Rakhasunu
- * @version CS 2
- */
-/**
- * Write a description of class Price here.
- *
- * @author Bintang Marsyuma Rakhasunu
- * @version CS 2
- */
-public class Room extends Serializable{
+
+public class Room extends Serializable implements FileParser
+{
     public int size;
     public String name;
     public String address;
     public Facility facility;
-    public bedType bedType;
+    public BedType bedType;
     public City city;
     public Price price;
 
@@ -53,5 +37,13 @@ public class Room extends Serializable{
                 "\nFasilitas : " + this.facility +
                 "\nHarga : " + this.price.price + " Rupiah" +
                 "\nAlamat : " + this.address + "\n";
+    }
+
+    public Object write() {
+        return null;
+    }
+
+    public boolean read(String string) {
+        return false;
     }
 }

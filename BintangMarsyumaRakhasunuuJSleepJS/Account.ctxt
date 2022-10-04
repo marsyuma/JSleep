@@ -1,8 +1,12 @@
 #BlueJ class context
 comment0.target=Account
-comment0.text=\r\n\ Write\ a\ description\ of\ enum\ Type\ here.\r\n\r\n\ @author\ Bintang\ Marsyuma\ Rakhasunu\r\n\ @version\ Post-Test\ CS\ 2\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ enum\ Type\ here.\r\n\r\n\ @author\ Bintang\ Marsyuma\ Rakhasunu\r\n\ @version\ Post-Test\ CS\ 4\r\n
 comment1.params=id\ name\ email\ password
 comment1.target=Account(int,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ toString()
-numComments=3
+comment3.params=
+comment3.target=java.lang.Object\ write()
+comment4.params=string
+comment4.target=boolean\ read(java.lang.String)
+numComments=5

@@ -4,83 +4,89 @@ package BintangMarsyumaRakhasunuuJSleepJS;
 
 
 
+
+
+
 /**
  * Write a description of class JSleep here.
  *
  * @author Bintang Marsyuma Rakhasunu
- * @version CS 2
+ * @version CS 4
  */
 
 
 public class JSleep{
 
     public static void main(String[] args){
-       Complaint testComplain = new Complaint(1, "23 August 2022", "Bad Quality");
 
-        Price testPrice = new Price(100000, 20000);
-
-        Room testRoom = new Room(1, "Presidential Suite", 5, testPrice, Facility.FitnessCenter, City.DEPOK, "JL. Margonda Raya");
-
-        Account testAccount = new Account(1, "Bob", "bob@gmail.com", "bob");
-
-        Rating testRating = new Rating();
-
-        System.out.println(testComplain.toString());
-        System.out.println(testRoom.toString());
-        System.out.println(testAccount.toString());
-        System.out.println(testPrice.toString());
-        System.out.println(testRating.toString());
-
-        /*System.out.println("getDiscPercent = " + getDiscountPercentage(1000, 800));
-        System.out.println("getDiscPrice = " + getDiscountedPrice(100000, 20.0f));
-        System.out.println("getOriginalPrice = " + getOriginalPrice(80000, 20.0f));
-        System.out.println("getAdminFee = " + getAdminFee(100000));
-        System.out.println("getTotalPrice = " + getTotalPrice(10000, 2));
-
-        Room test = createRoom();
-        System.out.println(test.name);
-        System.out.println(test.size);
-        System.out.println(test.price.price);
-        System.out.println(test.facility);*/
+        Payment testPayment = new Payment(2, 2, 2,2);
+        System.out.println(testPayment.getTime());
+        System.out.println(testPayment.getDuration());
+        Price[] unfilteredArray = new Price[5];
+        for(int i=0;i < unfilteredArray.length;i++){
+            int j = 5000;
+            unfilteredArray[i] = new Price((i+1)*j);
+        }
+        System.out.println("Price List");
+        for(int i=0;i < unfilteredArray.length;i++){
+            System.out.println(unfilteredArray[i].price);
+        }
+        System.out.println("Below 12000.0");
+        System.out.println(Validate.filter(unfilteredArray, 12000,true));
+        System.out.println("Above 10000.0");
+        System.out.println(Validate.filter(unfilteredArray, 10000,false));
     }
     /*public static Room createRoom(){
-        Price price = new Price(100000, 5);
+        Price price = new Price(100000, 100);
         Room room = new Room(231, "HotelKece", 50, price, Facility.AC, City.BEKASI, bedType.SINGLE, "Jalan Gatot Subroto");
         return room;
-    }*/
-    /*public static int getHotelId(){
+    }
+    public int getHotelId(){
         return 0;
     }
+
     public static String getHotelName(){
         return "hotel";
     }
+
     public static boolean isDiscount(){
         return true;
     }
+
     public static float getDiscountPercentage(int beforeDiscount, int afterDiscount){
-        if(beforeDiscount <= afterDiscount){
+        if (beforeDiscount <= afterDiscount){
             return 0.0f;
+        } else {
+            return (float) ((float)(beforeDiscount - afterDiscount)/(float)beforeDiscount)*100;
         }
-        return (float)(((float)beforeDiscount - (float)afterDiscount) / (float)beforeDiscount * 100);
     }
+
     public static int getDiscountedPrice(int price, float discountPercentage){
-        if(discountPercentage > 100.0f){
-            discountPercentage = 100.0f;
-        }
-        return (int)(price - (price * (discountPercentage / 100.0f)));
+        if (discountPercentage >= 100.0f){
+            return 0;
+        } else
+            return (int) (price * ((float)100.0 - discountPercentage)/100);
     }
+
     public static int getOriginalPrice(int discountedPrice, float discountPercentage){
-        return (int)((100.0f / (100.0f - discountPercentage)) * (float)discountedPrice);
+        if (discountPercentage >= 100.0f){
+            return (int) 0;
+        }else
+            return (int) ((float)discountedPrice * (100.0 / (100.0 - discountPercentage)));
+
     }
+
     public static float getAdminFeePercentage(){
         return 0.05f;
     }
+
     public static int getAdminFee(int price){
-        return (int)(price * getAdminFeePercentage());
+        return (int)((float)price * 0.05f);
     }
+
     public static int getTotalPrice(int price, int numberOfNight){
-        int totalPrice = price * numberOfNight;
-        return (totalPrice + getAdminFee(totalPrice));
+        return (price * numberOfNight) + getAdminFee(price * numberOfNight);
     }*/
-    
 }
+
+

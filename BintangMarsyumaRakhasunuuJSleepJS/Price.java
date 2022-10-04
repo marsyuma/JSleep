@@ -5,7 +5,7 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * Write a description of class Price here.
  *
  * @author Bintang Marsyuma Rakhasunu
- * @version CS 2
+ * @version CS 4
  */
 
 /**
@@ -30,7 +30,7 @@ public class Price {
         /*this.rebate = 0;*/
     }
     public String toString(){
-        return ("Harga : " + this.price + "\nDiskon : " + this.discount + " Persen");
+        return ("Harga : " + this.price + " Diskon : " + this.discount);
     }
     /*public Price(double price, double rebate){
         this.price = price;
