@@ -5,11 +5,16 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * Write a description of class Price here.
  *
  * @author Bintang Marsyuma Rakhasunu
- * @version CS 2
+ * @version PT Mod 4
  */
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Room extends Serializable implements FileParser
 {
+    public ArrayList<Date> booked;
     public int size;
     public String name;
     public String address;
@@ -27,6 +32,7 @@ public class Room extends Serializable implements FileParser
         this.city = city;
         this.address = address;
         this.bedType = bedType.KING;
+        this.booked = new ArrayList<Date>();
     }
 
     public String toString(){
