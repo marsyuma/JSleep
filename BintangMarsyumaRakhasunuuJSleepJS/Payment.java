@@ -32,18 +32,26 @@ public class Payment extends Invoice{
     }
 
     public static boolean availability(Date from, Date to, Room room){
-           for (Date date : room.booked) {
-                if (date.before(to) && date.equals(from)) {
-                    return false;
-                }
-           }
-            return true;
+        if(from.after(to)){
+            return false;
+        }
+        for (Date date : room.booked) {
+            if (date.before(to) && date.equals(from)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean makeBooking(Date from, Date to, Room room){
-        if(availability(from, to, room) && room.id != 50){
-            room.booked.add(from);
-            room.booked.add(to);
+        if(availability(from, to, room)){
+            for (Date date = from; date.before(to); ) {
+                room.booked.add(date);
+                Calendar temp = Calendar.getInstance();
+                temp.setTime(date);
+                temp.add(Calendar.DATE, 1);
+                date = temp.getTime();
+            }
             return true;
         }
         return false;
@@ -61,3 +69,4 @@ public class Payment extends Invoice{
     }
 
 }
+
