@@ -14,7 +14,7 @@ public class Validate {
         ArrayList result = new ArrayList();
         for (Price price : list) {
             if (less == true) {
-                if (price.price< value) {
+                if (price.price <= value) {
                     result.add(price.price);
                 }
             } else {

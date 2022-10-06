@@ -7,7 +7,7 @@ package BintangMarsyumaRakhasunuuJSleepJS;
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum BedType2 {
+public enum BedType {
     SINGLE,
     QUEEN,
     KING,

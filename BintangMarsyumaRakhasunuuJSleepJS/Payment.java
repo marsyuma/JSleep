@@ -33,7 +33,7 @@ public class Payment extends Invoice{
         this.to.add(Calendar.DATE, 2);
     }
     public String getTime(){
-        return SDFormat.format(this.time.getTime());
+        return "Formatted Date = " + SDFormat.format(this.time.getTime());
     }
     public String getDuration(){
         return SDFormat.format(this.from.getTime()) + " - " + SDFormat.format(this.to.getTime());
