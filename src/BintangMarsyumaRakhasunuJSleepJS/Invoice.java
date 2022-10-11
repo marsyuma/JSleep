@@ -28,8 +28,7 @@ public class Invoice extends Serializable{
     public RoomRating rating;
     public PaymentStatus status;
 
-    protected Invoice(int id, int buyerId, int renterId){
-        super(id);
+    protected Invoice(int buyerId, int renterId){
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.time = Calendar.getInstance().getTime();
@@ -44,8 +43,7 @@ public class Invoice extends Serializable{
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }*/
-    public Invoice(int id, Account buyer, Renter renter){
-        super(id);
+    public Invoice(Account buyer, Renter renter){
         this.buyerId = buyer.id;
         this.renterId = renter.id;
         this.time = Calendar.getInstance().getTime();

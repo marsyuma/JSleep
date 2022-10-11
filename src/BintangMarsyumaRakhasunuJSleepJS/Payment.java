@@ -18,14 +18,14 @@ public class Payment extends Invoice{
     public Date from;
     private int roomId;
 
-    public Payment(int id, int buyerId, int renterId, int roomId, Date from, Date to){
-        super(id, buyerId, renterId);
+    public Payment(int buyerId, int renterId, int roomId, Date from, Date to){
+        super(buyerId, renterId);
         this.roomId = roomId;
         this.from = Calendar.getInstance().getTime();
         this.to = Calendar.getInstance().getTime();
     }
-    public Payment(int id, Account buyer, Renter renter, int roomId, Date from, Date to){
-        super(id, buyer, renter);
+    public Payment(Account buyer, Renter renter, int roomId, Date from, Date to){
+        super(buyer, renter);
         this.roomId = roomId;
         this.from = Calendar.getInstance().getTime();
         this.to = Calendar.getInstance().getTime();
@@ -45,16 +45,18 @@ public class Payment extends Invoice{
 
     public static boolean makeBooking(Date from, Date to, Room room){
         if(availability(from, to, room)){
-            for (Date date = from; date.before(to); ) {
-                room.booked.add(date);
+            while (from.before(to)){
+                room.booked.add(from);
                 Calendar temp = Calendar.getInstance();
-                temp.setTime(date);
+                temp.setTime(from);
                 temp.add(Calendar.DATE, 1);
-                date = temp.getTime();
+                from = temp.getTime();
             }
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
 
     public String getTime(){
