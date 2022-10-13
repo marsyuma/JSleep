@@ -139,15 +139,17 @@ public class Algorithm {
     }
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred){
         List<T> list = new ArrayList<T>();
-        int counter = page > 1 ? (page-1)*pageSize : 0;
+        int counter = 0;
+        int index = page * pageSize;
         while(iterator.hasNext()){
-            if(pred.predicate(iterator.next())){
-                if(counter < pageSize){
+            if(pred.predicate(iterator.next())) {
+                if (counter >= index && counter < index + pageSize) {
                     list.add(iterator.next());
-                    counter++;
                 }
+                counter++;
             }
         }
+
         return (List<T>) list;
     }
 }
