@@ -148,6 +148,6 @@ public class Algorithm {
                 }
             }
         }
-        return list;
+        return (List<T>) list;
     }
 }
