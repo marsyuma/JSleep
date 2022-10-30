@@ -6,41 +6,41 @@ import java.util.HashMap;
 /**
  * Write a description of class Serializable here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Bintang MR
+ * @version TP 6 (KJ lord JS)
  */
 public class Serializable {
     public final int id;
-    private static HashMap<Class<?>, Integer > mapCounter = new HashMap<>();
-    protected Serializable(){
+    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class<?>, Integer>();
+
+    protected Serializable() {
         Integer counter = mapCounter.get(getClass());
-        if(counter == null){
-            counter = 0;
+        if (counter == null){
+            counter =  0;
         }
         else{
-            counter += 1;
+            counter +=1;
         }
         mapCounter.put(getClass(), counter);
         this.id = counter;
     }
 
-    public static <T extends  Serializable> Integer setClosingId(Class<T> Class, int id){
-        return mapCounter.put(Class, id);
-    }
-    public static <T extends Serializable> Integer getClosingId(Class<T> Class){
-        return mapCounter.get(Class);
+    public static <T extends Serializable> Integer setClosingId(Class<T> clazz, int id) { return mapCounter.put(clazz, id); }
+
+    public static <T extends Serializable> Integer getClosingId(Class<T> clazz) { return mapCounter.get(clazz); }
+
+    public boolean equals(Object other)
+    {
+        return other instanceof Serializable && ((Serializable) other).id == id;
     }
 
-    public int compareTo(Serializable other){
-        return Integer.compare(this.id, other.id);
-    }
-
-    public boolean equals(Object obj) {
-        return obj instanceof Serializable && ((Serializable) obj).id == this.id;
-    }
-    public boolean equals(Serializable other){
+    public boolean equals(Serializable other)
+    {
         return other.id == id;
     }
 
-
+    public int compareTo(Serializable other)
+    {
+        return Integer.compare(this.id, other.id);
+    }
 }
