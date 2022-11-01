@@ -6,7 +6,7 @@ package BintangMarsyumaRakhasunuJSleepJS;
  * @author Bintang Marsyuma Rakhasunu
  * @version Post-Test CS 4
  */
-public class Account extends Serializable implements FileParser
+public class Account extends Serializable
 {
     public String name;
     public String email;

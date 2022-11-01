@@ -8,27 +8,23 @@ package BintangMarsyumaRakhasunuJSleepJS;
  * @version (a version number or a date)
  */
 public class Renter extends Serializable{
-    public int phoneNumber = 0;
+    public String phoneNumber;
     public String address = "";
     public String username = "";
-    public Renter(String username){
-        this.username = username;
-    }
+    public static final String REGEX_NAME = "^[A-Z][a-zA-Z0-9_]{4,20}$";
+    public static final String REGEX_PHONE_NUMBER = "^[0-9]{9,12}$";
 
-    public Renter(String username, String address){
-        this.username = username;
-        this.address = address;
-    }
-
-    public Renter(String username, int phoneNumber){
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Renter(String username, int phoneNumber, String address){
+    public Renter(String username, String phoneNumber, String address){
         this.username = username;
         this.address = address;
         this.phoneNumber = phoneNumber;
+    }
+
+    public boolean validate(){
+        if (this.username.matches(REGEX_NAME) && this.phoneNumber.matches(REGEX_PHONE_NUMBER)){
+            return true;
+        }
+        return false;
     }
 
 }

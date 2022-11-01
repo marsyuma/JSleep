@@ -1,4 +1,5 @@
 package BintangMarsyumaRakhasunuJSleepJS;
+
 import java.util.*;
 
 public class Algorithm {
@@ -104,5 +105,69 @@ public class Algorithm {
                 return true;
         }
         return false;
+    }
+
+    public static <T> List<T> collect(T[] array, T value) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return collect(it, value);
+    }
+
+    public static <T> List<T> collect(Iterable<T> iterable, T value) {
+        final Iterator<T> it = iterable.iterator();
+        return collect(it, value);
+    }
+
+    public static <T> List<T> collect(Iterator<T> iterator, T value) {
+        final Predicate<T> pred = value::equals;
+        return collect(iterator, pred);
+    }
+
+    public static <T> List<T> collect(T[] array, Predicate<T> pred) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return collect(it, pred);
+    }
+
+    public static <T> List<T> collect(Iterable<T> iterable, Predicate<T> pred) {
+        final Iterator<T> it = iterable.iterator();
+        return collect(it, pred);
+    }
+
+    public static <T> List<T> collect(Iterator<T> iterator, Predicate<T> pred) {
+        ArrayList<T> list = new ArrayList<>();
+        while (iterator.hasNext()) {
+            T current = iterator.next();
+            if (pred.predicate(current))
+                list.add(current);
+        }
+        return list;
+    }
+
+    public static <T> List<T> paginate(T[] array, int page, int pageSize, Predicate<T> pred) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return paginate(it, page, pageSize, pred);
+    }
+
+    public static <T> List<T> paginate(Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
+        final Iterator<T> it = iterable.iterator();
+        return paginate(it, page, pageSize, pred);
+    }
+
+    public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
+        int occurences = 0;
+        int startingIdx = page * pageSize;
+        List<T> pageList = new ArrayList<>(pageSize);
+        // skip first occurrences of element
+        while (iterator.hasNext() && occurences < startingIdx) {
+            T obj = iterator.next();
+            if (pred.predicate(obj))
+                ++occurences;
+        }
+        // get the next occurrences of element
+        while (iterator.hasNext() && pageList.size() < pageSize) {
+            T obj = iterator.next();
+            if (pred.predicate(obj))
+                pageList.add(obj);
+        }
+        return pageList;
     }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import com.google.gson.*;
 
 public class JSleep{
+
+
     class Country{
         public String name;
         public int population;
@@ -15,29 +17,86 @@ public class JSleep{
     }
 
     public static void main(String[] args){
-        String filepath = "C:\\Main\\Documents\\Kuliah\\Teknik Komputer\\SEMESTER 3\\Pemrograman Berbasis Objek\\Project\\JSleep\\city.json";
-        Gson gson = new Gson();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filepath));
-            Country input = gson.fromJson(br, Country.class);
-            System.out.println("name: " + input.name);
-            System.out.println("population: " + input.population);
-            System.out.println("states: ");
-            input.listOfStates.forEach(state -> System.out.println(state));
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+        Renter testRegex = new Renter("Netlab_", "081234567890", "Jalan Margonda Raya");
+        Renter testRegexFail = new Renter("netlab_", "081", "Jalan Margonda Raya");
+        System.out.println(testRegex.validate());
+        System.out.println(testRegexFail.validate());
 
-        ArrayList<Room> RoomSerialized = new ArrayList<Room>();
-        for (int i = 0; i < 5; i++) {
-            RoomSerialized.add(i, JSleep.createRoom());
-            System.out.println(RoomSerialized.get(i).toString());
+        try{
+        String filepath = "src/json/randomRoomList.json";
+
+        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+        List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0,5);
+        filterTableRoom.forEach(room-> System.out.println(room.toString()));
+        }catch(Throwable t){
+            t.printStackTrace();
         }
+        //Test Jakarta
+        /*try{
+        String filepath = "src/json/randomRoomList.json";
+
+        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+        List<Room> filterTableRoom = filterByCity(tableRoom, "jakarta", 0,5);
+        filterTableRoom.forEach(room-> System.out.println(room.toString()));
+        }catch(Throwable t){
+            t.printStackTrace();
+        }*/
+
+        //a filterByPrice jika minPrice = 0 dan maxPrice = 500000.
+        /*try{
+        String filepath = "src/json/randomRoomList.json";
+
+        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+        List<Room> filterTableRoom = filterByPrice(tableRoom, 0, 500000);
+        filterTableRoom.forEach(room-> System.out.println(room.toString()));
+        }catch(Throwable t){
+            t.printStackTrace();
+        }*/
+
+        //filterByPrice jika minPrice = 100000 dan maxPrice = 250000.
+        /*try{
+        String filepath = "src/json/randomRoomList.json";
+        //filterByPrice jika minPrice = 100000 dan maxPrice = 250000.
+        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+        List<Room> filterTableRoom = filterByPrice(tableRoom, 100000, 250000);
+        filterTableRoom.forEach(room-> System.out.println(room.toString()));
+        }catch(Throwable t){
+            t.printStackTrace();
+        }*/
+
+        //a filterByAccountId jika accountId = 1, page = 0 dan pageSize = 5.
+        /*try{
+        String filepath = "src/json/randomRoomList.json";
+        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+        List<Room> filterTableRoom = filterByAccountId(tableRoom, 1, 0, 5);
+        filterTableRoom.forEach(room-> System.out.println(room.toString()));
+        }catch(Throwable t){
+            t.printStackTrace();
+        }*/
+
+        //filterByAccountId jika accountId = 11, page = 0 dan pageSize = 5.
+        /*try{
+        String filepath = "src/json/randomRoomList.json";
+        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+        List<Room> filterTableRoom = filterByAccountId(tableRoom, 11, 0, 5);
+        filterTableRoom.forEach(room-> System.out.println(room.toString()));
+        }catch(Throwable t){
+            t.printStackTrace();
+        }*/
+
+    }
+    public static List<Room> filterByCity(List<Room> list, String city, int page, int pageNumber){
+        return Algorithm.<Room>paginate(list, page, pageNumber, i -> i.city == City.valueOf(city.toUpperCase()));
+    }
+    public static List<Room> filterByPrice(List<Room> list, double minPrice, double maxPrice ){
+        return Algorithm.<Room>collect(list, i -> i.price.price >= minPrice && i.price.price <= maxPrice);
+    }
+    public static List<Room> filterByAccountId(List<Room> list, int accountId, int page, int pageSize){
+        return Algorithm.<Room>paginate(list, page, pageSize, i -> i.accountId == accountId);
     }
     public static Room createRoom(){
         Price price = new Price(100000, 0.5);
-        Room room = new Room("HotelKece", 50, price, Facility.AC, City.BEKASI, "Jalan Gatot Subroto");
+        Room room = new Room(25,"HotelKece", 50, price, Facility.AC, City.BEKASI, "Jalan Gatot Subroto");
         return room;
     }
     /*

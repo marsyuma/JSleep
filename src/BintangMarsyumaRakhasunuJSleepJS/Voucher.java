@@ -7,7 +7,7 @@ package BintangMarsyumaRakhasunuJSleepJS;
  * @author Bintang Marsyuma Rakhasunu
  * @version Post-Test CS 4
  */
-public class Voucher extends Serializable implements FileParser
+public class Voucher extends Serializable
 {
     public Type type;
     public double cut;

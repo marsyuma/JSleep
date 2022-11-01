@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Room extends Serializable implements FileParser
+public class Room extends Serializable
 {
     public ArrayList<Date> booked;
     public int size;
+    public int accountId;
     public String name;
     public String address;
     public Facility facility;
@@ -23,7 +24,7 @@ public class Room extends Serializable implements FileParser
     public City city;
     public Price price;
 
-    public Room (String name, int size, Price price, Facility facility, City city, String address){
+    public Room (int acccountId, String name, int size, Price price, Facility facility, City city, String address){
         this.name = name;
         this.size = size;
         this.price = price;
