@@ -25,6 +25,7 @@ public class Room extends Serializable
     public Price price;
 
     public Room (int acccountId, String name, int size, Price price, Facility facility, City city, String address){
+        this.accountId = acccountId;
         this.name = name;
         this.size = size;
         this.price = price;
