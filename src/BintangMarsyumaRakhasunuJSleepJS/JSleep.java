@@ -17,79 +17,32 @@ public class JSleep{
     }
 
     public static void main(String[] args){
-        Renter testRegex = new Renter("Netlab_", "081234567890", "Jalan Margonda Raya");
-        Renter testRegexFail = new Renter("netlab_", "081", "Jalan Margonda Raya");
+        /*Account testRegex = new Account("Netlab_", "bintang@gmail.com", "ArkaBrian1sad");
+        Account testRegexFail = new Account("A", "bintang.marsyuma@ui.ac.id", "ArkaBrian1");
         System.out.println(testRegex.validate());
         System.out.println(testRegexFail.validate());
 
         try{
-        String filepath = "src/json/randomRoomList.json";
+        String filepath = "src/json/Account.json";
 
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0,5);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
+        JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
+        tableAccount.add(new Account("name", "email", "password"));
+        tableAccount.writeJson();
+        System.out.println(tableAccount);
         }catch(Throwable t){
             t.printStackTrace();
+        }*/
+
+        for (int i = 0; i < 10; i++) {
+            ThreadingObject thread = new ThreadingObject("Thread " + i);
         }
-        //Test Jakarta
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByCity(tableRoom, "jakarta", 0,5);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-        //a filterByPrice jika minPrice = 0 dan maxPrice = 500000.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByPrice(tableRoom, 0, 500000);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-        //filterByPrice jika minPrice = 100000 dan maxPrice = 250000.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-        //filterByPrice jika minPrice = 100000 dan maxPrice = 250000.
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByPrice(tableRoom, 100000, 250000);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-        //a filterByAccountId jika accountId = 1, page = 0 dan pageSize = 5.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByAccountId(tableRoom, 1, 0, 5);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-        //filterByAccountId jika accountId = 11, page = 0 dan pageSize = 5.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByAccountId(tableRoom, 11, 0, 5);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
 
     }
     public static List<Room> filterByCity(List<Room> list, String city, int page, int pageNumber){
         return Algorithm.<Room>paginate(list, page, pageNumber, i -> i.city == City.valueOf(city.toUpperCase()));
     }
     public static List<Room> filterByPrice(List<Room> list, double minPrice, double maxPrice ){
-        return Algorithm.<Room>collect(list, i -> i.price.price >= minPrice && i.price.price <= maxPrice);
+        return Algorithm.<Room>collect(list, i ->  ((i.price.price >= minPrice) && (i.price.price <= maxPrice)));
     }
     public static List<Room> filterByAccountId(List<Room> list, int accountId, int page, int pageSize){
         return Algorithm.<Room>paginate(list, page, pageSize, i -> i.accountId == accountId);
