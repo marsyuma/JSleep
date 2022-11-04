@@ -10,19 +10,19 @@ import com.google.gson.*;
 public class JSleep{
 
 
-    class Country{
+    /*class Country{
         public String name;
         public int population;
         public List<String> listOfStates;
-    }
+    }*/
 
     public static void main(String[] args){
-        /*Account testRegex = new Account("Netlab_", "bintang@gmail.com", "ArkaBrian1sad");
-        Account testRegexFail = new Account("A", "bintang.marsyuma@ui.ac.id", "ArkaBrian1");
+        Account testRegex = new Account("Netlab_", "bintang@ui.ac.id", "BintangMR1");
+        Account testRegexFail = new Account("Netlab_", "bintangmarsyuma@ui.ac.id", "BintangMR");
         System.out.println(testRegex.validate());
         System.out.println(testRegexFail.validate());
 
-        try{
+        /*try{
         String filepath = "src/json/Account.json";
 
         JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
