@@ -32,9 +32,9 @@ public class JSleep{
             t.printStackTrace();
         }*/
 
-        for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
             ThreadingObject thread = new ThreadingObject("Thread " + i);
-        }
+        }*/
 
     }
     public static List<Room> filterByCity(List<Room> list, String city, int page, int pageNumber){
