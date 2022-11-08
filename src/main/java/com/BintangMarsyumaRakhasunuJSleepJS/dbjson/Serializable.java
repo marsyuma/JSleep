@@ -1,4 +1,4 @@
-package com.BintangMarsyumaRakhasunuJSleepJS;
+package com.BintangMarsyumaRakhasunuJSleepJS.dbjson;
 
 
 import java.util.HashMap;
@@ -7,9 +7,9 @@ import java.util.HashMap;
  * Write a description of class Serializable here.
  *
  * @author Bintang MR
- * @version TP 6 (KJ lord JS)
+ * @version CS 7
  */
-public class Serializable {
+public class Serializable implements Comparable<Serializable>{
     public final int id;
     private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class<?>, Integer>();
 

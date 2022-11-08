@@ -59,7 +59,7 @@ public class Algorithm {
         return find(it, pred);
     }
 
-    public static <T> T find(Iterable<T> iterable, Predicate<T> pred) {
+    public static <T> T find(Iterable<T> iterable, int id, Predicate<T> pred) {
         final Iterator<T> it = iterable.iterator();
         return find(it, pred);
     }

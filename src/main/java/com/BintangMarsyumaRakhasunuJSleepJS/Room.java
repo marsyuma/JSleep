@@ -8,8 +8,13 @@ package com.BintangMarsyumaRakhasunuJSleepJS;
  * @version PT Mod 4
  */
 
+import com.BintangMarsyumaRakhasunuJSleepJS.BedType;
+import com.BintangMarsyumaRakhasunuJSleepJS.City;
+import com.BintangMarsyumaRakhasunuJSleepJS.Facility;
+import com.BintangMarsyumaRakhasunuJSleepJS.Price;
+import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Room extends Serializable

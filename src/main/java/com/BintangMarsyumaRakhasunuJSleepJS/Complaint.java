@@ -1,7 +1,9 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
 
-public class Complaint extends Serializable{
+import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
+
+public class Complaint extends Serializable {
     public String date;
     public String desc;
 

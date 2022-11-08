@@ -1,6 +1,10 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
 
+import com.BintangMarsyumaRakhasunuJSleepJS.Price;
+import com.BintangMarsyumaRakhasunuJSleepJS.Type;
+import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
+
 /**
  * Write a description of class Voucher here.
  *

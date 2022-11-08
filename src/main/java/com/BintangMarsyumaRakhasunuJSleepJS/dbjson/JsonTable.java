@@ -1,4 +1,4 @@
-package com.BintangMarsyumaRakhasunuJSleepJS;
+package com.BintangMarsyumaRakhasunuJSleepJS.dbjson;
 
 
 import com.google.gson.Gson;

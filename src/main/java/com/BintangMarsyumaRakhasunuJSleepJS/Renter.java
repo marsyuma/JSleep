@@ -1,13 +1,15 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
 
+import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
+
 /**
  * Write a description of class Renter here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Renter extends Serializable{
+public class Renter extends Serializable {
     public String phoneNumber;
     public String address = "";
     public String username = "";
