@@ -7,7 +7,18 @@ package com.BintangMarsyumaRakhasunuJSleepJS;
  * @author Bintang Marsyuma Rakhasunu
  * @version CS 2
  */
-
+/**
+ * Write a description of class Price here.
+ *
+ * @author Bintang Marsyuma Rakhasunu
+ * @version CS 2
+ */
+/**
+ * Write a description of class Price here.
+ *
+ * @author Bintang Marsyuma Rakhasunu
+ * @version CS 2
+ */
 public class Rating {
     private long total;
     private long count;

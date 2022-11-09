@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account> {
-    @JsonAutowired(value = Account.class, filepath = "java/com/json")
+    @JsonAutowired(value = Account.class, filepath = "java/com/json/Account.json")
     public static JsonTable<Account> accountTable;
     public static final String REGEX_EMAIL = "^[a-zA-Z0-9][a-zA-Z0-9]+@[a-zA-Z.]+?\\.[a-zA-Z]+?$";
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
@@ -25,12 +24,12 @@ public class AccountController implements BasicGetController<Account> {
         return accountTable;
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     Account login(
             @RequestParam String email,
             @RequestParam String password
     ) {
-        Account account = Algorithm.<Account>find((Iterator<Account>) accountTable, pred -> pred.email == email && pred.password == password);
+        Account account = Algorithm.<Account>find(accountTable, pred -> pred.email == email && pred.password == password);
         if (account != null) {
             return account;
         }
@@ -52,6 +51,7 @@ public class AccountController implements BasicGetController<Account> {
         Matcher matcherPassword = patternPassword.matcher(password);
         boolean matchFoundPassword = matcherPassword.find();
         if (matchEmail && matchFoundPassword && !name.isBlank()) {
+            accountTable.add(new Account(name, email, password));
             return new Account(name, email, password);
         } else {
             return null;
@@ -63,7 +63,7 @@ public class AccountController implements BasicGetController<Account> {
             @RequestParam String username,
             @RequestParam String address
     ) {
-        Account account = Algorithm.<Account>find(accountTable, id, pred -> pred.id == id);
+        Account account = Algorithm.<Account>find(accountTable, pred -> pred.id == id);
         if (account != null) {
             return new Renter(username, address, address);
         }
@@ -72,7 +72,7 @@ public class AccountController implements BasicGetController<Account> {
 
     @PostMapping("/{id}/topUp")
     boolean topUp(@PathVariable int id, @RequestParam double balance) {
-        Account account = Algorithm.<Account>find((Iterator<Account>) accountTable, pred -> pred.id == id);
+        Account account = Algorithm.<Account>find(accountTable, pred -> pred.id == id);
         if (account != null) {
             account.balance += balance;
             return true;

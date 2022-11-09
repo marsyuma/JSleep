@@ -1,8 +1,6 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
 
-import com.BintangMarsyumaRakhasunuJSleepJS.Price;
-import com.BintangMarsyumaRakhasunuJSleepJS.Type;
 import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
 
 /**

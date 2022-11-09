@@ -1,6 +1,5 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
-
 /**
  * Enumeration class City - write a description of the enum class here
  *

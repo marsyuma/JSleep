@@ -4,11 +4,11 @@ package com.BintangMarsyumaRakhasunuJSleepJS.dbjson;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
-import java.io.*;
+
 import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.Vector;
-
+import java.io.*;
 /**
  * Json Table is used to write and read JSON in every class or method that call json table
  * @param <T> generic as a universal type of data.

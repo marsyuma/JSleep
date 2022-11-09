@@ -6,7 +6,6 @@ package com.BintangMarsyumaRakhasunuJSleepJS;
  *
  * @author (your name)
  * @version Tutam CS3*/
-
 import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
 
 import java.util.Calendar;

@@ -1,6 +1,5 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
-
 /**
  * Write a description of class Price here.
  *

@@ -1,5 +1,6 @@
 package com.BintangMarsyumaRakhasunuJSleepJS.controller;
 
+import com.BintangMarsyumaRakhasunuJSleepJS.Account;
 import com.BintangMarsyumaRakhasunuJSleepJS.Algorithm;
 import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.JsonTable;
 import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
@@ -18,7 +19,7 @@ import java.util.List;
 public interface BasicGetController <T extends Serializable> {
     @GetMapping("/{id}")
     public default T getById(@PathVariable int id){
-        return Algorithm.<T>find(getJsonTable(),id, pred -> pred.id == id);
+        return Algorithm.<T>find(getJsonTable(), pred -> pred.id == id);
     }
     public abstract JsonTable<T> getJsonTable();
 

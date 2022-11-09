@@ -1,6 +1,5 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
-
 /**
  * Enumeration class bedType - write a description of the enum class here
  *
