@@ -29,6 +29,7 @@ public class Voucher extends Serializable
 
 
     public boolean isUsed() {
+
         return used;
     }
 

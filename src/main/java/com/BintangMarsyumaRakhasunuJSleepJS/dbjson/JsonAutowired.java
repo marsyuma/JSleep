@@ -12,9 +12,9 @@ import java.lang.annotation.Target;
  * @version 0.1
  */
 @Retention(value=RetentionPolicy.RUNTIME)
-@Target(value={ElementType.METHOD, ElementType.FIELD})
-public @interface JsonAutowired
-{
+@Target(value={ElementType.FIELD})
+public @interface JsonAutowired {
 	Class<?> value();
+
 	String filepath();
 }

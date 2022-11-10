@@ -1,14 +1,13 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 
+import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.JsonDBEngine;
 import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.JsonTable;
-import com.google.gson.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class JSleep{
 
 
@@ -18,8 +17,13 @@ public class JSleep{
         public List<String> listOfStates;
     }
 
-    public static void main(String[] args){
-        Renter testRegex = new Renter("Netlab_", "081234567890", "Jalan Margonda Raya");
+    public static void main(String[] args) {
+        JsonDBEngine.Run(JSleep.class);
+        SpringApplication.run(JSleep.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
+    }
+
+        /*Renter testRegex = new Renter("Netlab_", "081234567890", "Jalan Margonda Raya");
         Renter testRegexFail = new Renter("netlab_", "081", "Jalan Margonda Raya");
         System.out.println(testRegex.validate());
         System.out.println(testRegexFail.validate());
@@ -32,61 +36,9 @@ public class JSleep{
         filterTableRoom.forEach(room-> System.out.println(room.toString()));
         }catch(Throwable t){
             t.printStackTrace();
-        }
-        //Test Jakarta
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByCity(tableRoom, "jakarta", 0,5);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
         }*/
 
-        //a filterByPrice jika minPrice = 0 dan maxPrice = 500000.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
 
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByPrice(tableRoom, 0, 500000);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-        //filterByPrice jika minPrice = 100000 dan maxPrice = 250000.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-        //filterByPrice jika minPrice = 100000 dan maxPrice = 250000.
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByPrice(tableRoom, 100000, 250000);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-        //a filterByAccountId jika accountId = 1, page = 0 dan pageSize = 5.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByAccountId(tableRoom, 1, 0, 5);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-        //filterByAccountId jika accountId = 11, page = 0 dan pageSize = 5.
-        /*try{
-        String filepath = "src/json/randomRoomList.json";
-        JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-        List<Room> filterTableRoom = filterByAccountId(tableRoom, 11, 0, 5);
-        filterTableRoom.forEach(room-> System.out.println(room.toString()));
-        }catch(Throwable t){
-            t.printStackTrace();
-        }*/
-
-    }
     public static List<Room> filterByCity(List<Room> list, String city, int page, int pageNumber){
         return Algorithm.<Room>paginate(list, page, pageNumber, i -> i.city == City.valueOf(city.toUpperCase()));
     }

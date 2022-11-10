@@ -8,8 +8,6 @@ package com.BintangMarsyumaRakhasunuJSleepJS;
  * @version Tutam CS3*/
 import com.BintangMarsyumaRakhasunuJSleepJS.dbjson.Serializable;
 
-import java.util.Calendar;
-import java.util.Date;
 
 public class Invoice extends Serializable {
     public enum RoomRating{
@@ -26,14 +24,12 @@ public class Invoice extends Serializable {
     }
     public int buyerId;
     public int renterId;
-    public Date time;
     public RoomRating rating;
     public PaymentStatus status;
 
     protected Invoice(int buyerId, int renterId){
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.time = Calendar.getInstance().getTime();
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }
@@ -48,11 +44,10 @@ public class Invoice extends Serializable {
     public Invoice(Account buyer, Renter renter){
         this.buyerId = buyer.id;
         this.renterId = renter.id;
-        this.time = Calendar.getInstance().getTime();
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }
     public String print(){
-        return ("buyerId: " + this.buyerId + " renterId: " + this.renterId + " time: " +this.time);
+        return ("buyerId: " + this.buyerId + " renterId: " + this.renterId);
     }
 }

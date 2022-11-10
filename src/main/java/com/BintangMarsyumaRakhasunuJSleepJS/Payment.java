@@ -16,6 +16,7 @@ import java.util.Date;
 
 public class Payment extends Invoice {
 
+
     private int roomId;
     public Date from;
     public Date to;
@@ -70,11 +71,10 @@ public class Payment extends Invoice {
         return true;
     }
 
-    public String getTime(){
+    /*public String getTime(){
         SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date' = dd MMMM yyyy");
-        String currTime = SDFormat.format(time.getTime());
-        return currTime;
-    }
+
+    }*/
 
     @Override
     public String print(){
