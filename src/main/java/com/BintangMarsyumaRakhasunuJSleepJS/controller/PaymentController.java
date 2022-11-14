@@ -16,8 +16,7 @@ public class PaymentController implements BasicGetController<Payment> {
     @JsonAutowired(value = Payment.class, filepath = "C:\\Main\\Documents\\Kuliah\\Teknik Komputer\\SEMESTER 3\\Pemrograman Berbasis Objek\\Project\\JSleep\\src\\main\\java\\com\\json\\payment.json")
     private static JsonTable<Payment> paymentTable;
 
-    @GetMapping
-    public JsonTable getJsonTable(){
+    public JsonTable<Payment> getJsonTable(){
         return paymentTable;
     }
     @PostMapping("/{id}/create")
@@ -28,26 +27,29 @@ public class PaymentController implements BasicGetController<Payment> {
             @RequestParam String from,
             @RequestParam String to
     ) throws ParseException {
-        Account account = Algorithm.<Account>find(new AccountController().getJsonTable(), pred -> pred.id == buyerId);
-        Room room = Algorithm.<Room>find(new RoomController().getJsonTable(), pred -> pred.id == renterId);
-        String status;
-        double price = room.price.price;
-        boolean lebihBesar = account.balance >= price;
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateFrom = sdf.parse(from);
-        Date dateTo = sdf.parse(to);
-        Payment payment = new Payment(buyerId, renterId, roomId, dateFrom, dateTo);
+        Date fromDate = sdf.parse(from);
+        Date toDate = sdf.parse(to);
+        Account buyer = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == buyerId);
+        Room room = Algorithm.<Room>find(RoomController.roomTable, pred -> pred.id == roomId);
 
-        if(account != null && room != null && lebihBesar){
-            account.balance -= price;
-            payment.status = Invoice.PaymentStatus.WAITING;
-            payment.makeBooking(dateFrom, dateTo, room);
-            paymentTable.add(payment);
-            return payment;
+
+
+        if (buyer == null || room == null || buyer.balance <= room.price.price || !Payment.availability(fromDate, toDate, room)) {
+            return null;
         }
-
-        return null;
+        else{
+            Payment payment = new Payment(buyerId, renterId, roomId, fromDate, toDate);
+            buyer.balance -= room.price.price;
+            payment.status = Invoice.PaymentStatus.WAITING;
+            if(Payment.makeBooking(fromDate, toDate, room)){
+                paymentTable.add(payment);
+                return payment;
+            }
+            else{
+                return null;
+            }
+        }
     }
     @PostMapping("/{id}/accept")
     public boolean accept( @RequestParam int id ){
@@ -63,9 +65,10 @@ public class PaymentController implements BasicGetController<Payment> {
     public boolean cancel(@RequestParam int id  ){
         Payment payment = Algorithm.<Payment>find(paymentTable, pred -> pred.id == id);
         if(payment.status == Invoice.PaymentStatus.WAITING){
-            Account account = Algorithm.<Account>find(new AccountController().getJsonTable(), pred -> pred.id == payment.buyerId);
-            Room room = Algorithm.<Room>find(new RoomController().getJsonTable(), pred -> pred.id == id);
+            Account account = Algorithm.<Account>find(AccountController.accountTable,pred -> pred.id == payment.buyerId);
+            Room room = Algorithm.<Room>find(RoomController.roomTable, pred -> pred.id == payment.getRoomId());
             payment.status = Invoice.PaymentStatus.FAILED;
+            account.balance += room.price.price;
             return true;
         }
         return false;

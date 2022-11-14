@@ -21,3 +21,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+jar{
+	manifest{
+		attributes 'Main-Class' : 'Jsleep'
+	}
+}

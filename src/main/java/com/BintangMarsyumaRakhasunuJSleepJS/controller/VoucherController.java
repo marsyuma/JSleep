@@ -21,11 +21,11 @@ public class VoucherController implements BasicGetController{
     public static JsonTable<Voucher> voucherTable;
 
     @Override
-    public JsonTable getJsonTable() {
+    public JsonTable<Voucher> getJsonTable() {
         return voucherTable;
     }
 
-    @GetMapping
+    @GetMapping("/{id}/isUsed")
     boolean isUsed(
             @RequestParam int id
     ){
@@ -33,7 +33,7 @@ public class VoucherController implements BasicGetController{
         return voucher.isUsed();
     }
 
-    @GetMapping("/canApply")
+    @GetMapping("/{id}/canApply")
     boolean canApply(
             @RequestParam int id,
             @RequestParam double price
