@@ -21,20 +21,20 @@ public class Room extends Serializable
     public int accountId;
     public String name;
     public String address;
-    public Facility facility;
+    public ArrayList<Facility> facility = new ArrayList<>();
     public BedType bedType;
     public City city;
     public Price price;
 
-    public Room (int acccountId, String name, int size, Price price, Facility facility, City city, String address){
+    public Room (int acccountId, String name, int size, Price price, ArrayList<Facility> facility, City city, String address, BedType bedType){
         this.accountId = acccountId;
         this.name = name;
         this.size = size;
         this.price = price;
-        this.facility = facility;
+        this.facility.addAll(facility);
         this.city = city;
         this.address = address;
-        this.bedType = bedType.KING;
+        this.bedType = bedType;
         this.booked = new ArrayList<Date>();
     }
 

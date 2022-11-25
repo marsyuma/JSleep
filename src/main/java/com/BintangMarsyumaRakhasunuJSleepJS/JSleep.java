@@ -48,11 +48,11 @@ public class JSleep{
     public static List<Room> filterByAccountId(List<Room> list, int accountId, int page, int pageSize){
         return Algorithm.<Room>paginate(list, page, pageSize, i -> i.accountId == accountId);
     }
-    public static Room createRoom(){
+    /*public static Room createRoom(){
         Price price = new Price(100000, 0.5);
         Room room = new Room(25,"HotelKece", 50, price, Facility.AC, City.BEKASI, "Jalan Gatot Subroto");
         return room;
-    }
+    }*/
     /*
     public int getHotelId(){
         return 0;
