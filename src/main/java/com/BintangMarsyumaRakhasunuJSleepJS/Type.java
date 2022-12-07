@@ -2,7 +2,7 @@ package com.BintangMarsyumaRakhasunuJSleepJS;
 
 
 /**
- * Write a description of enum Type here.
+ * Enum type price promo.
  *
  * @author Bintang Marsyuma Rakhasunu
  * @version Post-Test CS 2

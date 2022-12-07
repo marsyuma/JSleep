@@ -58,6 +58,7 @@ public class RoomController implements BasicGetController<Room>{
             @RequestParam int pageSize
 
     ){
+        System.out.println("masuk");
         return Algorithm.<Room>paginate(getJsonTable(), page, pageSize, pred -> true);
     }
 }

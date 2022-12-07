@@ -1,10 +1,10 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
 /**
- * Enumeration class City - write a description of the enum class here
+ * Enumeration class City - enum untuk nama kota
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Bintang MR
+ * @version City Modul 4
  */
 public enum City {
     SURABAYA,

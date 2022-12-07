@@ -2,7 +2,7 @@ package com.BintangMarsyumaRakhasunuJSleepJS;
 
 
 /**
- * Write a description of class Payment here.
+ * Class for processing payment
  *
  * @author Bintang MR
  * @version TP 6 (KJ lord JS)
@@ -22,7 +22,15 @@ public class Payment extends Invoice {
     public Date to;
 
 
-
+    /**
+     * Constructs a `Payment` object with the given buyer ID, renter ID, room ID, start date, and end date.
+     *
+     * @param buyerId the ID of the buyer
+     * @param renterId the ID of the renter
+     * @param roomId the ID of the room being booked
+     * @param from the start date of the booking
+     * @param to the end date of the booking
+     */
     public Payment(int buyerId, int renterId, int roomId, Date from, Date to) {
         super(buyerId, renterId);
         this.roomId = roomId;
@@ -30,6 +38,15 @@ public class Payment extends Invoice {
         this.to = to;
     }
 
+    /**
+     * Constructs a `Payment` object with the given buyer account, renter, room ID, start date, and end date.
+     *
+     * @param buyer the buyer account
+     * @param renter the renter
+     * @param roomId the ID of the room being booked
+     * @param from the start date of the booking
+     * @param to the end date of the booking
+     */
     public Payment(Account buyer, Renter renter, int roomId, Date from, Date to) {
         super(buyer, renter);
         this.roomId = roomId;
@@ -37,6 +54,11 @@ public class Payment extends Invoice {
         this.to = to;
     }
 
+    /**
+     * Returns the ID of the room being booked.
+     *
+     * @return the room ID
+     */
     public int getRoomId() {
         return roomId;
     }

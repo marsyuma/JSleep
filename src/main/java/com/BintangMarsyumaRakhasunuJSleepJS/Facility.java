@@ -1,10 +1,10 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
 /**
- * Write a description of class Price here.
+ * The `Facility` enum represents the facilities that a hotel may have.
  *
- * @author Bintang Marsyuma Rakhasunu
- * @version CS 2
+ * @author Bintang MR
+ * @version Modul 4
  */
 public enum Facility
 {

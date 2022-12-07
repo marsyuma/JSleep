@@ -1,11 +1,12 @@
 package com.BintangMarsyumaRakhasunuJSleepJS;
 
 /**
- * Enumeration class bedType - write a description of the enum class here
+ * Enumeration class bedType - enum untuk tipe kasur
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Bintang MR
+ * @version BedType Modul 4
  */
+
 public enum BedType {
     SINGLE,
     QUEEN,
