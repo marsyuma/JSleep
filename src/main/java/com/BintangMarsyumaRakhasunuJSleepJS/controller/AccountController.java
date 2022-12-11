@@ -18,11 +18,22 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This class represents a controller for an account.
+ * It provides methods for logging in, registering a new account,
+ * and registering a new renter associated with an account.
+ *
+ * @author Bintang MR
+ *
+ * @implements BasicGetController<Account>
+ */
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
 {
+    /** A regular expression for a valid password. */
     public final static String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+    /** A regular expression for a valid email. */
     public final static String REGEX_EMAIL = "^[a-zA-Z0-9 ][a-zA-Z0-9]+@[a-zA-Z.]+?\\.[a-zA-Z]+?$";
 
     @JsonAutowired(value = Account.class, filepath = "C:\\Main\\Documents\\Kuliah\\Teknik Komputer\\SEMESTER 3\\Pemrograman Berbasis Objek\\Project\\JSleep\\src\\main\\java\\com\\json\\account.json")
@@ -31,11 +42,23 @@ public class AccountController implements BasicGetController<Account>
     public final static Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD) ;
     public final static Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
 
-
+    /**
+     * Returns the table of accounts.
+     *
+     * @return the table of accounts
+     */
     public JsonTable<Account> getJsonTable() {
         return AccountController.accountTable;
     }
 
+    /**
+     * Logs in an account with the specified email address and password.
+     *
+     * @param email the email address of the account
+     * @param password the password of the account
+     *
+     * @return the account if the login is successful, or null if the login fails
+     */
     @PostMapping("/login")
     Account login(
             @RequestParam String email,
@@ -59,7 +82,17 @@ public class AccountController implements BasicGetController<Account>
         Account temp = Algorithm.<Account>find(accountTable,pred -> email.equals(pred.email) && finalPassword.equals(pred.password));
         return temp;
     }
-
+    /**
+     * Registers a new account with the specified name, email, and password.
+     * The email and password must match the regular expressions for a valid email address
+     * and password, respectively. The name cannot be blank.
+     *
+     * @param name the name of the new account
+     * @param email the email address of the new account
+     * @param password the password of the new account
+     *
+     * @return the newly registered account if the registration is successful, or null if the registration fails
+     */
     @PostMapping("/register")
     Account register(
             @RequestParam String name,
@@ -94,7 +127,17 @@ public class AccountController implements BasicGetController<Account>
         }
 
     }
-
+    /**
+     * Registers a new renter for the account with the specified ID.
+     * The renter must not already be registered for the account.
+     *
+     * @param id the ID of the account for which the renter is being registered
+     * @param username the username of the new renter
+     * @param address the address of the new renter
+     * @param phoneNumber the phone number of the new renter
+     *
+     * @return the newly registered renter if the registration is successful, or null if the registration fails
+     */
     @PostMapping("/{id}/registerRenter")
     Renter registerRenter(@PathVariable int id, @RequestParam String username, @RequestParam String address,
                           @RequestParam String phoneNumber ){
@@ -108,7 +151,14 @@ public class AccountController implements BasicGetController<Account>
             return null;
         }
     }
-
+    /**
+     * Adds the specified amount to the balance of the account with the specified ID.
+     *
+     * @param id the ID of the account
+     * @param balance the amount to add to the account balance
+     *
+     * @return true if the balance was successfully added, or false if the account with the specified ID was not found
+     */
     @PostMapping("/{id}/topUp")
     boolean topUp(@PathVariable int id, @RequestParam double balance ){
         Account account = Algorithm.<Account>find(getJsonTable(), acc -> id == acc.id);

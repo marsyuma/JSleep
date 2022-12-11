@@ -10,15 +10,36 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * This class represents a controller for a payment.
+ * It provides methods create and update a payment,
+ *
+ * @author Bintang MR
+ *
+ * @implements BasicGetController<Payment>
+ */
 @RestController
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
     @JsonAutowired(value= Payment.class,filepath = "src/main/java/com/json/payment.json")
     public static JsonTable<Payment> paymentTable;
 
+    /**
+     * Returns the table of payments.
+     *
+     * @return the table of payments
+     */
     public JsonTable<Payment> getJsonTable(){
         return paymentTable;
     }
+    /**
+     * Accepts the payment with the specified ID.
+     * The payment must have a status of WAITING.
+     *
+     * @param id the ID of the payment to accept
+     *
+     * @return true if the payment was successfully accepted, or false if the payment was not found or had an invalid status
+     */
 
     @PostMapping("/{id}/accept")
     public boolean accept( @PathVariable int id ){
@@ -34,6 +55,14 @@ public class PaymentController implements BasicGetController<Payment> {
 
     }
 
+    /**
+     * Cancels the payment with the specified ID.
+     * The payment must have a status of WAITING.
+     *
+     * @param id the ID of the payment to cancel
+     *
+     * @return true if the payment was successfully cancelled, or false if the payment was not found or had an invalid status
+     */
     @PostMapping("/{id}/cancel")
     public boolean cancel(@PathVariable int id ){
         Payment payment = Algorithm.<Payment>find(paymentTable,payment1 -> payment1.id == id);
@@ -47,7 +76,20 @@ public class PaymentController implements BasicGetController<Payment> {
         return true;
 
     }
-
+    /**
+     * Creates a new payment with the specified details.
+     * The payment's status is initially set to WAITING.
+     *
+     * @param buyerId the ID of the buyer
+     * @param renterId the ID of the renter
+     * @param roomId the ID of the room
+     * @param from the start date of the reservation
+     * @param to the end date of the reservation
+     *
+     * @return the newly created payment
+     *
+     * @throws ParseException if the dates are in an invalid format
+     */
     @PostMapping("/create")
     public Payment create(
             @RequestParam int buyerId,
@@ -84,12 +126,49 @@ public class PaymentController implements BasicGetController<Payment> {
         }
 
     }
+    /**
+     * Submits the payment with the specified ID.
+     *
+     * @param id the ID of the payment to submit
+     *
+     * @return true if the payment was successfully submitted, or false if the payment was not found
+     */
     @PostMapping("/submit")
     public boolean submit( @RequestParam int id ){
         return false;
     }
 
+    /**
+     * Returns a paginated list of payments made by the account with the specified ID.
+     *
+     * @param id the ID of the account
+     * @param page the page number to return
+     * @param pageSize the number of items per page
+     *
+     * @return a paginated list of payments made by the specified account
+     */
+    @GetMapping("getAll/{id}")
+    List<Payment> getAccountPayment(@PathVariable int id, @RequestParam int page, @RequestParam int pageSize){
+        return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> pred.buyerId == id);
+    }
 
+    /**
+     * Return a rating of the renter with the specified ID.
+     * @param id
+     * @param rating
+     * @return
+     */
+    @PostMapping("/{id}/rating")
+    public boolean rating(@PathVariable int id, @RequestParam String rating) {
+        Payment payment = Algorithm.<Payment>find(paymentTable, pred -> pred.id == id);
+
+        if (payment != null && payment.status == Invoice.PaymentStatus.SUCCESS) {
+            System.out.println("rating: "+rating);
+            payment.rating = Invoice.RoomRating.valueOf(rating);
+            return true;
+        }
+        return false;
+    }
 }
 
 
