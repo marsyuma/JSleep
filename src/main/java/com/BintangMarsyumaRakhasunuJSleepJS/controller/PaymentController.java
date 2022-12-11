@@ -168,7 +168,22 @@ public class PaymentController implements BasicGetController<Payment> {
             return true;
         }
         return false;
+    }@GetMapping("/getOrderForRenter")
+    public List<Payment> getOrderForRenter(
+            @RequestParam int renterId,
+            @RequestParam int page,
+            @RequestParam int pageSize
+    ){
+        return Algorithm.<Payment>paginate(getJsonTable(),page,pageSize,pred -> pred.renterId == renterId);
     }
+
+    @GetMapping("/getOrderForBuyer")
+    public List<Payment> getOrderForBuyer(
+            @RequestParam int buyerId
+    ){
+        return Algorithm.<Payment>collect(getJsonTable(),pred -> pred.buyerId == buyerId);
+    }
+
 }
 
 
